@@ -1,85 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-	<title>if interloper was a video game button</title>
-	
-	<!-- Primary Meta Tags -->
-	<meta name="title" content="if interloper was a video game button">
-	<meta name="description" content="if interloper was a video game button">
-	
-	<!-- Open Graph / Facebook -->
-	<meta property="og:type" content="website">
-	<meta property="og:url" content="https://Fallden4.github.io/interlopergame/">
-	<meta property="og:title" content="if interloper was a video game button">
-	<meta property="og:description" content="if interloper was a video game button">
-	<meta property="og:image" content="https://Fallden4.github.io/interlopergame/header-image.png">
-	
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image">
-	<meta property="twitter:url" content="https://Fallden4.github.io/interlopergame/">
-	<meta property="twitter:title" content="if interloper was a video game button">
-	<meta property="twitter:description" content="if interloper was a video game button">
-	<meta property="twitter:image" content="https://Fallden4.github.io/interlopergame/header-image.png">
-
-	<style>
-html, body {
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<title>if interloper was a video game button</title>
+		<style>
+html, body, #canvas {
 	margin: 0;
 	padding: 0;
 	border: 0;
+}
+
+body {
 	color: white;
 	background-color: black;
-	overflow: auto; /* Changed from hidden to allow scrolling if needed */
+	overflow: hidden;
 	touch-action: none;
-}
-
-#canvas-wrapper {
-	padding: 20px;
-	box-sizing: border-box;
-	max-width: 800px; /* Added maximum width constraint */
-	margin: 0 auto; /* Center the wrapper */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-#top-image {
-	display: block;
-	margin: 0 auto 10px auto;
-	max-width: 100%;
-	height: auto;
 }
 
 #canvas {
 	display: block;
-	width: 100%;
-	max-width: 800px; /* Match wrapper max-width */
-	height: auto;
-	aspect-ratio: 16/9; /* Maintain aspect ratio */
 }
 
 #canvas:focus {
 	outline: none;
 }
 
-/* Status overlay adjustments */
-#status {
-	position: fixed; /* Changed from absolute to cover viewport */
-	top: 0;
+#status, #status-splash, #status-progress {
+	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: 0;
-	background-color: #242424;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	visibility: hidden;
-	z-index: 100;
 }
 
-#status-splash, #status-progress {
+#status, #status-splash {
 	top: 0;
 	bottom: 0;
 }
@@ -136,26 +89,25 @@ html, body {
 	text-align: center;
 	z-index: 1;
 }
-	</style>
-</head>
-<body>
+		</style>
+		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 
-	<div id="canvas-wrapper">
-		<img id="top-image" src="header-image.png" alt="Header Image">
+	</head>
+	<body>
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
 		</canvas>
-	</div>
 
-	<noscript>
-		Your browser does not support JavaScript.
-	</noscript>
+		<noscript>
+			Your browser does not support JavaScript.
+		</noscript>
 
-	<div id="status">
-		<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
-		<progress id="status-progress"></progress>
-		<div id="status-notice"></div>
-	</div>
+		<div id="status">
+			<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="index.png" alt="">
+			<progress id="status-progress"></progress>
+			<div id="status-notice"></div>
+		</div>
 
 		<script src="index.js"></script>
 		<script>
@@ -230,7 +182,7 @@ const engine = new Engine(GODOT_CONFIG);
 					}
 					return registration;
 				}).then(() => engine.installServiceWorker()),
-				// For some reason, `getRegistration()` can stall
+				// For some reason, getRegistration() can stall
 				new Promise((resolve) => {
 					setTimeout(() => resolve(), 2000);
 				}),
@@ -265,4 +217,3 @@ const engine = new Engine(GODOT_CONFIG);
 		</script>
 	</body>
 </html>
-
